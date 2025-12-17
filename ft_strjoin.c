@@ -69,7 +69,6 @@ char	*ft_strjoin(char *str1, char *str2)
 		return (NULL);
 	if (length == 0)
 	{
-		joinedstring = malloc(1);
 		joinedstring[0] = '\0';
 		return (joinedstring);
 	}

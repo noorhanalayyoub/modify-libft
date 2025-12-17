@@ -12,43 +12,46 @@
 
 #include "libft.h"
 
-void	placenums(char *ans, int neg, int n, int length)
+static int	num_length(long n)
 {
-	while (length > 0)
+	int	len;
+
+	len = (n <= 0);
+	while (n)
 	{
-		ans[length] = n % 10 + '0';
-		length--;
+		n /= 10;
+		len++;
 	}
-	if (neg)
-		ans[0] = '-';
-	else
-		ans[0] = n % 10 + '0';
+	return (len);
 }
 
-char	*ft_itoa(int n)
+static void	fill_digits(char *str, long n, int len, int neg)
 {
-	int		length;
-	int		temp;
-	int		neg;
-	char	*ans;
+	while (len-- > neg)
+	{
+		str[len] = n % 10 + '0';
+		n /= 10;
+	}
+	if (neg)
+		str[0] = '-';
+}
 
-	neg = 0;
-	length = 0;
-	temp = n;
-	if (!n)
-		return (ft_strdup("0"));
-	while (temp)
-	{
-		length++;
-		temp = temp / 10;
-	}
-	if (n < 0)
-	{
-		neg = 1;
-		n *= -1;
-		length++;
-	}
-	ans = malloc(length + 1);
-	placenums(ans, neg, n, length);
-	return (ans);
+char	*ft_itoa(int nbr)
+{
+	long	n;
+	int		neg;
+	int		len;
+	char	*str;
+
+	n = nbr;
+	neg = (n < 0);
+	len = num_length(n);
+	if (neg)
+		n = -n;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	fill_digits(str, n, len, neg);
+	return (str);
 }
