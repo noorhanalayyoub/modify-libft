@@ -6,85 +6,39 @@
 /*   By: nalayyou <nalayyou@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:23:51 by nalayyou          #+#    #+#             */
-/*   Updated: 2025/12/15 17:25:00 by nalayyou         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:46:40 by nalayyou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	totlength(char **str, int size, char *sep)
+static int	totlength(char *str1 , char *str2)
 {
-	int	index;
-	int	j;
-	int	count;
 
-	count = 0;
-	j = 0;
-	index = 0;
-	while (index < size)
-	{
-		j = 0;
-		while (str[index][j])
-		{
-			count++;
-			j++;
-		}
-		index++;
-	}
-	index = 0;
-	while (sep[index])
-		index++;
-	count += (size - 1) * index;
-	count++;
-	return (count);
 }
 
 void	copystring(int size, char **strs, char *sep, char *joinedstring)
 {
-	int	index;
-	int	j;
-	int	m;
-
-	m = 0;
-	index = 0;
-	j = 0;
-	while (index < size)
-	{
-		j = 0;
-		while (strs[index][j])
-			joinedstring[m++] = strs[index][j++];
-		j = 0;
-		if (index < size - 1)
-		{
-			while (sep[j])
-			{
-				joinedstring[m] = sep[j];
-				j++;
-				m++;
-			}
-		}
-		index++;
-	}
-	joinedstring[m] = '\0';
+	
 }
 
-char	*ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin( char *str1 , char *str2)
 {
 	int		length;
 	char	*joinedstring;
-
-	if (size == 0)
+	 
+if(!str1 || !str2) retunr (NULL) ; 
+length = totlength (str1 , str2) ;
+jointedstring = malloc ((totlength+1) *sizeof(char) ) ;
+if(!joinedstring) return (NULL);  
+	if (length == 0)
 	{
 		joinedstring = malloc(1);
 		joinedstring[0] = '\0';
 		return (joinedstring);
 	}
-	length = totlength(strs, size, sep);
-	joinedstring = malloc(length * 1);
-	if (!joinedstring)
-		return (NULL);
-	copystring(size, strs, sep, joinedstring);
-	return (joinedstring);
+
+	
 }
 
 // #include <stdio.h>
