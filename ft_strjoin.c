@@ -33,7 +33,7 @@ static int	totlength(char *str1, char *str2)
 	return (length);
 }
 
-void	copystring(int length, char *str1, char *str2, char *joinedstring)
+static void	copystring(int length, char *str1, char *str2, char *joinedstring)
 {
 	int	index;
 	int	j;
