@@ -6,7 +6,7 @@
 /*   By: nalayyou <nalayyou@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:23:51 by nalayyou          #+#    #+#             */
-/*   Updated: 2025/12/17 16:46:40 by nalayyou         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:51:17 by nalayyou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,25 @@ static int	totlength(char *str1 , char *str2)
 
 }
 
-void	copystring(int size, char **strs, char *sep, char *joinedstring)
+void	copystring(int length ,  char *str1 ,char *str2 ,char *joinedstring)
 {
-	
+	int index ; 
+int j ; 
+j= 0 ; 
+index = 0 ;
+while(str1[j]) {
+joinedstring[index] = str1[j] ; 
+j++;
+index++;
+} 
+j = 0 ; 
+while(index<length && str2[j]) {
+jointedstring[index] = str2[j] ; 
+j++ ; 
+index++ ; 
+} 
+joinedstring[length] = '\0' 
+
 }
 
 char	*ft_strjoin( char *str1 , char *str2)
@@ -37,7 +53,7 @@ if(!joinedstring) return (NULL);
 		joinedstring[0] = '\0';
 		return (joinedstring);
 	}
-
+copystring(length , str1 , str2 , joinedstring) ; 
 	
 }
 
