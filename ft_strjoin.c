@@ -12,49 +12,69 @@
 
 #include "libft.h"
 
-static int	totlength(char *str1 , char *str2)
+static int	totlength(char *str1, char *str2)
 {
+	int	length;
+	int	index;
 
+	length = 0;
+	index = 0;
+	while (str1[index])
+	{
+		index++;
+		length++;
+	}
+	index = 0;
+	while (str2[index])
+	{
+		index++;
+		length++;
+	}
+	return (length);
 }
 
-void	copystring(int length ,  char *str1 ,char *str2 ,char *joinedstring)
+void	copystring(int length, char *str1, char *str2, char *joinedstring)
 {
-	int index ; 
-int j ; 
-j= 0 ; 
-index = 0 ;
-while(str1[j]) {
-joinedstring[index] = str1[j] ; 
-j++;
-index++;
-} 
-j = 0 ; 
-while(index<length && str2[j]) {
-jointedstring[index] = str2[j] ; 
-j++ ; 
-index++ ; 
-} 
-joinedstring[length] = '\0' 
+	int	index;
+	int	j;
 
+	j = 0;
+	index = 0;
+	while (str1[j])
+	{
+		joinedstring[index] = str1[j];
+		j++;
+		index++;
+	}
+	j = 0;
+	while (index < length && str2[j])
+	{
+		joinedstring[index] = str2[j];
+		j++;
+		index++;
+	}
+	joinedstring[length] = '\0';
 }
 
-char	*ft_strjoin( char *str1 , char *str2)
+char	*ft_strjoin(char *str1, char *str2)
 {
 	int		length;
 	char	*joinedstring;
-	 
-if(!str1 || !str2) retunr (NULL) ; 
-length = totlength (str1 , str2) ;
-jointedstring = malloc ((totlength+1) *sizeof(char) ) ;
-if(!joinedstring) return (NULL);  
+
+	if (!str1 || !str2)
+		return (NULL);
+	length = totlength(str1, str2);
+	joinedstring = malloc((length + 1));
+	if (!joinedstring)
+		return (NULL);
 	if (length == 0)
 	{
 		joinedstring = malloc(1);
 		joinedstring[0] = '\0';
 		return (joinedstring);
 	}
-copystring(length , str1 , str2 , joinedstring) ; 
-	
+	copystring(length, str1, str2, joinedstring);
+	return (joinedstring);
 }
 
 // #include <stdio.h>
